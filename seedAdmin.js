@@ -15,18 +15,17 @@ const seedAdmin = async () => {
       process.exit(0);
     }
 
-    // Create default admin user
+    // Create default admin user with credentials from environment variables
     const adminUser = await User.create({
       fullName: 'Admin User',
-      email: 'admin@softsolution.com',
+      email: process.env.ADMIN_EMAIL ,
       phone: '+1234567890',
-      password: 'admin123', // In production, use a strong password
+      password: process.env.ADMIN_PASSWORD , // In production, use a strong password
       role: 'admin'
     });
 
     console.log('Admin user created successfully:');
     console.log(`Email: ${adminUser.email}`);
-    console.log(`Password: admin123`);
     console.log('Please change the default password after first login!');
 
     process.exit(0);
